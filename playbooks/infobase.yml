@@ -1,0 +1,122 @@
+
+- name: Install 1c components
+  hosts: all
+  
+  tasks:
+  
+  - name: Add user
+    1c_infobase: 
+        state: add_user
+        cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
+        cluster_user: admin
+        cluster_pwd: "0205"
+        infobase_name: test_cli5
+        licence_type: usb
+        user_name: Alex
+        user_psw: "0205"
+        epf_file_path: /home/nails/Test.epf
+        new_user_name: Ansible5
+        new_user_full_name: Full Ansible Name3
+        new_user_auth_standart: True
+        new_user_role: Роль1
+        new_user_psw: "0205"
+        new_user_show_in_list: True
+       
+    register: testout3
+  - name: dump test output 2
+    debug:
+      msg: '{{ testout3 }}'
+
+
+  - name: Test And Repair
+    1c_infobase: 
+        state: check_and_repair
+        cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
+        cluster_user: admin
+        cluster_pwd: "0205"
+        infobase_name: test_cli5
+        licence_type: usb
+        user_name: Alex
+        user_psw: "0205"
+        check_and_repair_states:
+          - ReIndex
+          - Rebuild
+       
+    register: testout3
+  - name: dump test output 2
+    debug:
+      msg: '{{ testout3 }}'
+
+  - name: DUMP
+    1c_infobase: 
+        state: list
+        cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
+        cluster_user: admin
+        cluster_pwd: "0205"
+       
+    register: testout3
+  - name: dump test output 2
+    debug:
+      msg: '{{ testout3 }}'
+  
+  - name: DUMP
+    1c_infobase: 
+        state: dump
+        cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
+        cluster_user: admin
+        cluster_pwd: "0205"
+        dump_path: /home/nails/test.dt
+        infobase_name: test_cli5
+        licence_type: usb
+        user_name: Alex
+        user_psw: "0205"
+    register: testout3
+
+  - name: dump test output 2
+    debug:
+      msg: '{{ testout3 }}'
+  
+  - name: Create new Info Base
+    1c_infobase: 
+        state: update
+        cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
+        infobase_id: fdc7eb48-b17a-46e8-8902-c835f5d123f9
+        descr: UPDATEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+        cluster_user: admin3
+        cluster_pwd: "0205"
+        
+    register: testout12
+  - name: dump test output 2
+    debug:
+      msg: '{{ testout12 }}'
+  
+      
+  - name: Create new Info Base
+    1c_infobase: 
+        state: create
+        cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
+        infobase_name: "test_cli6001"
+        db_server: localhost
+        db_name: "test_cli6001"
+        db_user: postgres
+        db_pwd: "0205"
+        license_distr: True
+        cluster_user: admin3
+        cluster_pwd: "0205"
+        descr: "ITTTSSARAISKYVGBHUNJMKLXRDCFGVBHNJMLKDXCFGVBHNMKCFVGBHNJMKL"
+    register: testout
+  - name: dump test output 2
+    debug:
+      msg: '{{ testout}}'
+      
+  - name: delete
+    1c_infobase: 
+        state: drop
+        cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
+        infobase_id: '{{ testout.infobase_id }}'
+        cluster_user: admin3
+        cluster_pwd: "0205"
+    register: testout2
+  - name: dump test output 2
+    debug:
+      msg: '{{ testout2 }}'

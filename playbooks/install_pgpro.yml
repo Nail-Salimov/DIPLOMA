@@ -1,0 +1,14 @@
+- name: Install PgPro 14
+  hosts: all
+  
+  tasks:
+  - name: Install PgPro 14
+    become:
+    install_postgres_pro:
+        version: 14
+        parallel_installation: true
+    register: testout
+  - name: dump test output
+    debug:
+      msg: '{{ testout }}'
+

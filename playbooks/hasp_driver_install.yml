@@ -1,0 +1,12 @@
+- name: Install 1c components
+  hosts: all
+  
+  tasks:
+  - name: Haspd install
+    become:
+    ubuntu_haspd_install:
+        ubuntu_version: 20.04
+    register: testout
+  - name: dump test output
+    debug:
+      msg: '{{ testout }}'

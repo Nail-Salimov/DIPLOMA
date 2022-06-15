@@ -1,0 +1,14 @@
+- name: Copy file, like scp
+  hosts: all
+  
+  tasks:
+  - name: Publish info base
+    1c_webinst:
+       state: delete
+       wsdir: ws_ansible_3
+    register: out
+  - name: output
+    debug:
+      msg: '{{ out }}'
+
+

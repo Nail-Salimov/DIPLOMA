@@ -1,0 +1,11 @@
+- name: Copy file, like scp
+  hosts: all
+  
+  tasks:
+  - name: Convert the string to base64
+    ansible.builtin.copy:
+       src: /home/nail/Загрузки/1c_edt_distr_2021.3.4_10_linux_x86_64.tar.gz
+       dest: /home/nails/1c_edt_distr_2021.3.4_10_linux_x86_64.tar.gz
+       owner: nails
+       mode: u=rwx,g=r,o=r
+

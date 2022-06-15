@@ -1,0 +1,12 @@
+- name: Set backup pg pro
+  hosts: all
+  
+  tasks:
+  - name: Restore backup
+    
+    set_defult_configuration_pgpro:
+        postgres_user_password: 0205
+    register: testout
+  - name: dump test output
+    debug:
+      msg: '{{ testout }}'

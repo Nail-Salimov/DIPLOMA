@@ -1,0 +1,19 @@
+- name: Set backup pg pro
+  hosts: all
+  
+  tasks:
+  - name: Add admin
+    
+    1c_cluster:
+        state: admin
+        cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
+        admin_name: admin3
+        admin_pwd: "0205"
+        cluster_user: admin
+        cluster_pwd: "0205"
+    register: testout
+  
+  - name: dump test output
+    debug:
+      msg: '{{ testout }}'
+    when: testout.rc == 0

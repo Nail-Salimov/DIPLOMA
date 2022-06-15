@@ -1,0 +1,15 @@
+- name: Set backup pg pro
+  hosts: all
+  
+  tasks:
+  - name: Restore backup
+    
+    restore_backup_pgpro:
+        ip_address: 'localhost'    
+        pg_user: postgres
+        database: "test1"
+        backup_path: "/home/nails/test1.bak"
+    register: testout
+  - name: dump test output
+    debug:
+      msg: '{{ testout }}'

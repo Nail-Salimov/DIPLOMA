@@ -1,0 +1,16 @@
+- name: Set backup pg pro
+  hosts: all
+  
+  tasks:
+  - name: Restore backup
+    
+    1c_webinst_publish:
+        wsdir: test_ansible
+        info_base_cluster: localhost
+        info_base_name: test_cli2
+    register: testout
+  
+  - name: dump test output
+    debug:
+      msg: '{{ testout }}'
+    when: testout.rc == 0

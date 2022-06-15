@@ -1,0 +1,20 @@
+- name: Set backup pg pro
+  hosts: all
+  
+  tasks:
+  - name: Set backup
+    
+    set_backup_pgpro:
+        state: cron
+        pg_user: postgres
+        pg_psw: 0205
+        database: test_cli
+        backup_path: "/home/nails/1"
+        period: 0 1 * * *
+        ip_address: localhost
+        file_name: test2
+        life_days: 30
+    register: testout
+  - name: dump test output
+    debug:
+      msg: '{{ testout }}'

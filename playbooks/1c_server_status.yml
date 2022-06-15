@@ -1,0 +1,14 @@
+- name: Set backup pg pro
+  hosts: all
+  
+  tasks:
+  - name: Restore backup
+    
+    1c_server:
+        state: restart
+    register: testout
+  
+  - name: dump test output
+    debug:
+      msg: '{{ testout }}'
+    when: testout.rc == 0

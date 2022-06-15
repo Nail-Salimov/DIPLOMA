@@ -1,0 +1,22 @@
+- name: Install 1c components
+  hosts: all
+  
+  tasks:
+  
+  - name: Create new Info Base
+    1c_licence: 
+        state: install
+        cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
+        agent_host: localhost
+        agent_port: 1540
+        port_range: 1560:1591
+        name: UPDATEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+        using: normal
+        cluster_user: admin3
+        cluster_pwd: "0205"
+        
+    register: testout12
+  - name: dump test output 2
+    debug:
+      msg: '{{ testout12 }}'
+  
