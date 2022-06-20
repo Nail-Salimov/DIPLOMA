@@ -1,33 +1,9 @@
 
-- name: Install 1c components
+- name: VKR
   hosts: all
   
   tasks:
   
-  - name: Add user
-    1c_infobase: 
-        state: add_user
-        cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
-        cluster_user: admin
-        cluster_pwd: "0205"
-        infobase_name: test_cli5
-        licence_type: usb
-        user_name: Alex
-        user_psw: "0205"
-        epf_file_path: /home/nails/Test.epf
-        new_user_name: Ansible5
-        new_user_full_name: Full Ansible Name3
-        new_user_auth_standart: True
-        new_user_role: Роль1
-        new_user_psw: "0205"
-        new_user_show_in_list: True
-       
-    register: testout3
-  - name: dump test output 2
-    debug:
-      msg: '{{ testout3 }}'
-
-
   - name: Test And Repair
     1c_infobase: 
         state: check_and_repair
@@ -47,7 +23,7 @@
     debug:
       msg: '{{ testout3 }}'
 
-  - name: DUMP
+  - name: Infobase list
     1c_infobase: 
         state: list
         cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
@@ -76,7 +52,7 @@
     debug:
       msg: '{{ testout3 }}'
   
-  - name: Create new Info Base
+  - name: Update Info Base
     1c_infobase: 
         state: update
         cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
@@ -109,7 +85,7 @@
     debug:
       msg: '{{ testout}}'
       
-  - name: delete
+  - name: Delete Info Base 
     1c_infobase: 
         state: drop
         cluster_id: e4d08ce6-a83e-4947-a32c-869dfd0e4b8d
